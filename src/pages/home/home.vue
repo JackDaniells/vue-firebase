@@ -8,7 +8,7 @@
 
 
 export default {
-
+  name: 'home',
   data() {
     return {
 
@@ -17,6 +17,10 @@ export default {
 
   methods: {
 
+  },
+
+  mounted () {
+    console.log('home rendered')
   }
 
 }

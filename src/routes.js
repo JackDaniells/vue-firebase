@@ -10,16 +10,16 @@ import home from './pages/home/home.vue'
 import login from './pages/login/login.vue'
 
 var router = new VueRouter({
-    mode: 'history',
+    // mode: 'history',
     // base: '/',
     routes: [
         {
             path: '*',
-            redirect: {name: 'login'}
+            redirect: '/login'
         },
         {
             path: '/',
-            redirect: {name: 'login'}
+            redirect: '/login'
         },
         {
             path: '/login',
@@ -39,13 +39,15 @@ var router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     var currentUser = firebase.auth().currentUser;
-    console.log('verificação de login')
-    console.log(currentUser)
     var requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-    if (requiresAuth && !currentUser) next( {name: 'login'})
-    else if (!requiresAuth && currentUser) next( {name: 'home'})
-    else next()
+    if (requiresAuth && !currentUser) {
+        console.log('login')
+        next({name:'login'})
+    }
+    else {
+        next()
+    } 
 })
 
 export default router

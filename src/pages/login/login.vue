@@ -1,4 +1,5 @@
 <template>
+
   <div class="login-page">
     <input class="login-item" placeholder="login" type="text" v-model="email">
     <input class="login-item" placeholder="senha" type="password" v-model="password">
@@ -10,15 +11,8 @@
 
 <script>
 
-import firebaseSetup from 'firebase';
-
-import config from '../../firebase.json' 
-
-
-const firebase =  firebaseSetup.initializeApp(config);
-
 export default {
-
+  name: 'login',
   data() {
     return {
       email: '',
@@ -33,18 +27,20 @@ export default {
   methods: {
 
     signup() {
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) => {
+      window.firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) => {
         console.log(user)
         alert('Conta criada, bem vindo')
+        this.$router.go({name: 'home'})
       }).catch((err) => {
         alert('Erro: ' + err.message)
       })
     }, 
 
     login() {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((user) => {
+      window.firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((user) => {
         console.log(user)
         alert('Login efetuado com sucesso')
+        this.$router.go({name: 'home'})
       }).catch((err) => {
         alert('Erro: ' + err.message)
       })

@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <!-- <login-page/> -->
+    <router-view/>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './/HelloWorld.vue'
 
-// import loginPage from '@/login/login.vue'
+// import loginPage from './pages/login/login.vue'
 
 export default {
   name: 'app',
